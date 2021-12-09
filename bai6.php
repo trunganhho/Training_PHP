@@ -14,9 +14,6 @@
             border: 1px solid black;
         }
 
-        .class1 {
-
-        }
     </style>
 
 </head>
