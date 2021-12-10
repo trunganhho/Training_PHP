@@ -1,6 +1,8 @@
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
+
     <style>
         th,
         td {
@@ -20,18 +22,20 @@
         }
 
         h3 {
+            padding: 0 9px 0;
             margin: 0;
             background-color: orange;
-            font-size: 32px;
+            font-size: 25px;
             width: auto;
             color: brown;
+            font-family: 'Courgette';
         }
 
         td:first-child {
             color: brown;
         }
 
-        input[type=text]:focus {
+        input[readonly] {
             background-color: #eda1db;
         }
 
@@ -51,15 +55,15 @@
 <body>
     <form action="bai14.php" method="post">
         <table>
-            <h3>Diện tích hình chữ nhật</h3>
+            <h3>DIỆN TÍCH HÌNH CHỮ NHẬT</h3>
             <div id="background">
                 <tr>
                     <td>Chiều dài: </td>
-                    <td><input type="text" name="length" value="<?php echo $length ?>" /></td>
+                    <td><input type="number" name="length" value="<?php echo $length ?>" step="any"/></td>
                 </tr>
                 <tr>
                     <td>Chiều rộng: </th>
-                    <td><input type="text" name="width" value="<?php echo $width ?>" /></th>
+                    <td><input type="number" name="width" value="<?php echo $width ?>" step="any"/></th>
                 </tr>
                 <tr>
                     <td>Diện tích: </th>

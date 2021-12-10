@@ -1,6 +1,7 @@
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
     <style>
         td {
             padding: 5px 40px 5px 0;
@@ -20,19 +21,22 @@
         }
 
         h3 {
+            padding: 0 9px 0;
             margin: 0;
-            background-color: orange;
-            font-size: 32px;
+            background-color: #e84393;
+            font-size: 25px;
             width: auto;
-            color: brown;
+            color: white;
+            font-family: 'Courgette';
+
         }
 
         td:first-child {
             color: brown;
         }
 
-        input[type=text]:focus {
-            background-color: #eda1db;
+        input[readonly] {
+            background-color: #ffeaa7;
         }
 
         table {
@@ -43,8 +47,8 @@
     $sem1 = $_POST["sem1"] ?? 0;
     $sem2 = $_POST["sem2"] ?? 0;
     $avg = 0;
-    $res;
-    $rate;
+    $res = "";
+    $rate = "";
 
 
     if ($sem1 >= 0 && $sem2 >= 0) {
@@ -70,15 +74,15 @@
 <body>
     <form action="bai17.php" method="post">
         <table>
-            <h3>Kết quả học tập</h3>
+            <h3>KẾT QUẢ HỌC TẬP</h3>
             <div id="background">
                 <tr>
                     <td>Điểm HK1: </td>
-                    <td><input type="text" name="sem1" value="<?php echo $sem1 ?>" /></td>
+                    <td><input type="number" name="sem1" value="<?php echo $sem1 ?>" step="any" /></td>
                 </tr>
                 <tr>
                     <td>Điểm HK2: </td>
-                    <td><input type="text" name="sem2" value="<?php echo $sem2 ?>" /></td>
+                    <td><input type="number" name="sem2" value="<?php echo $sem2 ?>" step="any"/></td>
                 </tr>
                 <tr>
                     <td>Điểm trung bình: </td>

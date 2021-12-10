@@ -2,10 +2,11 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
+
     <style>
+        th,
         td {
-            padding: 5px 40px 5px 0;
-            width: 100px;
+            padding: 5px 50px 5px 0;
         }
 
         #buttonHolder {
@@ -15,7 +16,7 @@
 
         form {
             text-align: center;
-            width: 350px;
+            width: fit-content;
             margin: 0 auto 0;
             background-color: pink;
         }
@@ -43,30 +44,31 @@
         }
     </style>
     <?php
-    $radius = $_POST["radius"] ?? 0;
-    if ($radius >= 0) {
-        $circuit = round($radius * 2 * M_PI);
-        $area = round($radius * $radius * M_PI);
+    $a = $_POST["a"] ?? null;
+    $b = $_POST["b"] ?? null;
+    $other = null;
+    if ($a >= 0 && $b >= 0) {
+        $other = number_format(sqrt($a*$a + $b*$b),2,',','');
     } else echo '<script type="text/javascript">alert("Dữ liệu không hợp lệ!");</script>';
     ?>
 </head>
 
 <body>
-    <form action="bai15.php" method="post">
+    <form action="bai19.php" method="post">
         <table>
-            <h3>DIỆN TÍCH VÀ CHU VI HÌNH TRÒN</h3>
+            <h3>CẠNH HUYỀN TAM GIÁC VUÔNG</h3>
             <div id="background">
                 <tr>
-                    <td>Bán kính: </td>
-                    <td><input type="number" name="radius" value="<?php echo $radius ?>" step="any"/></td>
+                    <td>Cạnh a: </td>
+                    <td><input type="number" name="a" value="<?php echo $a ?>" step="any"/></td>
                 </tr>
                 <tr>
-                    <td>Diện tích: </th>
-                    <td><input type="text" name="area" readonly value="<?php echo $area ?>"/></th>
+                    <td>Cạnh b: </th>
+                    <td><input type="number" name="b" value="<?php echo $b ?>" step="any"/></th>
                 </tr>
                 <tr>
-                    <td>Chu vi: </th>
-                    <td><input type="text" name="circuit" readonly value="<?php echo $circuit ?>" /></th>
+                    <td>Cạnh huyền: </th>
+                    <td><input type="text" name="other" readonly value="<?php echo $other ?>" /></th>
                 </tr>
             </div>
         </table>
