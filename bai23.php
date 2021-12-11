@@ -33,7 +33,7 @@
             color: brown;
         }
 
-        td:nth-child(2){
+        td:nth-child(2) {
             display: inline-block;
             padding-left: 15px;
         }
@@ -54,37 +54,38 @@
     $isRightAngledType = false;
     $isIsoscelesType = false;
     $isEquilateralType = false;
+    $isTriangle = false;
 
-    if($side3 < $side2 + $side1 && $side2 < $side3 + $side1 && $side1 < $side2 + $side3){
-        if($side1 == $side2 && $side1 == $side3 && $side3 == $side2){
+    if ($side3 < $side2 + $side1 && $side2 < $side3 + $side1 && $side1 < $side2 + $side3) {
+        $isTriangle = true;
+        if ($side1 == $side2 && $side1 == $side3 && $side3 == $side2) {
             $isEquilateralType = true;
         }
-        if($side1 == $side2 || $side1 == $side3 || $side3 == $side2){
+        if ($side1 == $side2 || $side1 == $side3 || $side3 == $side2) {
             $isIsoscelesType = true;
         }
-        if($side1*$side1 == $side2*$side2 + $side3*$side3 || $side2*$side2 == $side1*$side1 + $side3*$side3
-        || $side3*$side3 == $side2*$side2 + $side1*$side1){
+        if (
+            $side1 * $side1 == $side2 * $side2 + $side3 * $side3 || $side2 * $side2 == $side1 * $side1 + $side3 * $side3
+            || $side3 * $side3 == $side2 * $side2 + $side1 * $side1
+        ) {
             $isRightAngledType = true;
         }
     } else $type = "Không là tam giác";
 
-    if($isRightAngledType){
-        if($isIsoscelesType){
-            $type = "Tam giác vuông cân";
-        }
-        else $type = "Tam giác vuông";
-    }
-
-    if($isIsoscelesType){
-        $type = "Tam giác cân";
-    }
-
-    if($isEquilateralType){
-        $type = "Tam giác đều";
-    }
-
-    if(!$isRightAngledType && !$isIsoscelesType && !$isEquilateralType){
+    if ($isTriangle) {
         $type = "Tam giác thường";
+        if ($isRightAngledType) {
+            if ($isIsoscelesType) {
+                $type = "Tam giác vuông cân";
+            } else $type = "Tam giác vuông";
+        } 
+        else if ($isIsoscelesType) {
+            $type = "Tam giác cân";
+        } 
+
+        if ($isEquilateralType) {
+            $type = "Tam giác đều";
+        }
     }
     ?>
 </head>
