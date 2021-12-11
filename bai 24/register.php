@@ -131,15 +131,15 @@
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Email</div>
-                            <div class="divTableCell"><input type="email" name="email" size="30"/></div>
+                            <div class="divTableCell"><input type="email" name="email" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Password</div>
-                            <div class="divTableCell"><input type="password" id="pass1" name="pass1" size="30"/></div>
+                            <div class="divTableCell"><input type="password" id="pass1" name="pass1" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Nhập lại pasword</div>
-                            <div class="divTableCell"><input type="password" id="pass2" name="pass2" size="30"/></div>
+                            <div class="divTableCell"><input type="password" id="pass2" name="pass2" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell title">Thông tin cá nhân</div>
@@ -147,15 +147,15 @@
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Họ và tên</div>
-                            <div class="divTableCell"><input type="text" name="name" size="30"/></div>
+                            <div class="divTableCell"><input type="text" name="name" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Địa chỉ</div>
-                            <div class="divTableCell"><input type="text" name="address" size="30"/></div>
+                            <div class="divTableCell"><input type="text" name="address" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Điện thoại</div>
-                            <div class="divTableCell"><input type="text" name="phone" size="30"/></div>
+                            <div class="divTableCell"><input type="text" name="phone" size="30" /></div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell">Giới tính</div>
@@ -180,7 +180,7 @@
                         <div class="divTableRow">
                             <div class="divTableCell"></div>
                             <div class="divTableCell">
-                                <input type="submit" value="Đăng ký" onclick="checkPass()"/>
+                                <input type="submit" value="Đăng ký" onclick="checkPass()" />
                                 <input type="reset" value="Làm lại" />
                             </div>
                         </div>
@@ -191,10 +191,10 @@
         </div>
     </div>
     <script type="text/javascript">
-        function checkPass(){
+        function checkPass() {
             var pass1 = document.getElementById("pass1").value;
             var pass2 = document.getElementById("pass2").value;
-            if(pass1 !== pass2){
+            if (pass1 !== pass2) {
                 event.preventDefault();
                 alert("Mật khẩu phải khớp với phần nhập lại!");
             }

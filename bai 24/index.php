@@ -137,7 +137,7 @@
       </div>
     </div>
   </div>';
-  /*
+    /*
   sleep(4);
   header("Location: register.php"); */
     ?>
@@ -205,12 +205,12 @@
         $(document).ready(function() {
             $("#myModal").modal('show');
         });
-        $('#myModal').on('shown.bs.modal', function (e) {
-            handler = setTimeout(function(){
+        $('#myModal').on('shown.bs.modal', function(e) {
+            handler = setTimeout(function() {
                 window.location.href = "./register.php";
             }, 4000);
         })
-        $('#myModal').on('hidden.bs.modal', function (e) {
+        $('#myModal').on('hidden.bs.modal', function(e) {
             clearTimeout(handler);
         })
     </script>
