@@ -1,6 +1,12 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <?php
+    session_start();
+    ?>
     <style>
         #banner {
             background-color: blue;
@@ -115,14 +121,14 @@
         <div id="left-div">
             <div id="menu">
                 <div style="background-color: black; text-align:center; color:white; font-weight: bold;">Menu</div>
-                <div><a href="index.php">Trang chủ</a></div>
-                <div><a href="register.php">Đăng ký</a></div>
-                <div style="color: white;">Đăng nhập</div>
+                <div style="display:<?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "hidden" : "" ?>;"><a href="index.php">Trang chủ</a></div>
+                <div><a href="register.php"><?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "Thông tin cá nhân" : "Đăng ký" ?></a></div>
+                <div><a href="<?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "logout.php" : "login.php" ?>"><?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "Đăng xuất" : "Đăng nhập" ?></a></div>
             </div>
         </div>
         <div id="right-div">
             <h3 style="color: #004ca0; text-align:center;">THÔNG TIN ĐĂNG KÝ</h3>
-            <form method="post" action="index.php">
+            <form method="post" action="register.php">
                 <div class="divTable">
                     <div class="divTableBody">
                         <div class="divTableRow">

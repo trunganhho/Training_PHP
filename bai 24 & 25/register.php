@@ -110,15 +110,36 @@
 
 <body>
     <?php
-    $email = $_POST["email"] ?? null;
-    $name = $_POST["name"] ?? null;
-    $address = $_POST["address"] ?? null;
-    $phone = $_POST["phone"] ?? null;
-    $gender = $_POST["gender"] ?? null;
-    $hobby = array();
-    array_push($hobby, (isset($_POST["red"]) ? "Đỏ" : null), (isset($_POST["yellow"]) ? "Vàng" : null), (isset($_POST["green"]) ? "Xanh" : null));
+    session_start();
 
-    echo '<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    /* 
+    Page dùng cho 2 mục đích, 1 là page đích của trang index khi chuyển dữ liệu theo phương thức
+    post, 2 là khi trang đăng ký trở thành thông tin cá nhân theo bài 25. Do yêu cầu bài 24 với
+    25 có điểm chung là đều hiển thị thông tin sau khi đăng ký thành công hoặc đang trong phiên đăng nhập, điểm
+    khác biệt là ở bài 24 sẽ hiện lên modal thông báo người dùng trong khi bài 25 thì không.  
+    */
+    $email = isset($_POST["email"]) ? $_POST["email"] : (isset($_SESSION["email"]) ? $_SESSION["email"] : null);
+    $name = isset($_POST["name"]) ? $_POST["name"] : (isset($_SESSION["name"]) ? $_SESSION["name"] : null);
+    $address = isset($_POST["address"]) ? $_POST["address"] : (isset($_SESSION["address"]) ? $_SESSION["address"] : null);
+    $phone = isset($_POST["phone"]) ? $_POST["phone"] : (isset($_SESSION["phone"]) ? $_SESSION["phone"] : null);
+    $gender = isset($_POST["gender"]) ? $_POST["gender"] : (isset($_SESSION["gender"]) ? $_SESSION["gender"] : null);
+    $password = isset($_POST["pass1"]) ? $_POST["pass1"] : (isset($_SESSION["password"]) ? $_SESSION["password"] : null);
+
+    $_SESSION["email"] = $email;
+    $_SESSION["password"] = $password;
+    $_SESSION["address"] = $address;
+    $_SESSION["phone"] = $phone;
+    $_SESSION["gender"] = $gender;
+    $_SESSION["name"] = $name;
+
+    $hobby = array();
+    if (isset($_POST["red"]) || isset($_POST["yellow"]) || isset($_POST["green"])) {
+        array_push($hobby, (isset($_POST["red"]) ? "Đỏ" : null), (isset($_POST["yellow"]) ? "Vàng" : null), (isset($_POST["green"]) ? "Xanh" : null));
+        $_SESSION["hobby"] = $hobby;
+    } else $hobby = isset($_SESSION["hobby"]) ? $_SESSION["hobby"] : null;
+
+    if (!isset($_SESSION["isLogin"]) || !$_SESSION["isLogin"]) {
+        echo '<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -137,9 +158,7 @@
       </div>
     </div>
   </div>';
-    /*
-  sleep(4);
-  header("Location: register.php"); */
+    }
     ?>
     <div id="banner">
         <div>
@@ -150,13 +169,13 @@
         <div id="left-div">
             <div id="menu">
                 <div style="background-color: black; text-align:center; color:white; font-weight: bold;">Menu</div>
-                <div><a href="index.php">Trang chủ</a></div>
-                <div><a href="register.php">Đăng ký</a></div>
-                <div style="color: white;">Đăng nhập</div>
+                <div style="display:<?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "hidden" : "" ?>;"><a href="index.php">Trang chủ</a></div>
+                <div><a href="register.php"><?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "Thông tin cá nhân" : "Đăng ký" ?></a></div>
+                <div><a href="<?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "logout.php" : "login.php" ?>"><?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "Đăng xuất" : "Đăng nhập" ?></a></div>
             </div>
         </div>
         <div id="right-div">
-            <h3 style="color: #004ca0; text-align:center;">THÔNG TIN ĐĂNG KÝ</h3>
+            <h3 style="color: #004ca0; text-align:center;"><?php echo isset($_SESSION["isLogin"]) && $_SESSION["isLogin"] ? "THÔNG TIN CÁ NHÂN" : "THÔNG TIN ĐĂNG KÝ" ?></h3>
             <div class="divTable">
                 <div class="divTableBody">
                     <div class="divTableRow">
@@ -207,7 +226,7 @@
         });
         $('#myModal').on('shown.bs.modal', function(e) {
             handler = setTimeout(function() {
-                window.location.href = "./register.php";
+                window.location.href = "./index.php";
             }, 4000);
         })
         $('#myModal').on('hidden.bs.modal', function(e) {
