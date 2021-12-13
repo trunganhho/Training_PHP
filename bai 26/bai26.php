@@ -90,10 +90,10 @@
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["my_file"]["tmp_name"]);
             if ($check !== false) {
-                $message += "File is an image - " . $check["mime"] . ".\n";
+                $message .= "File is an image - " . $check["mime"] . ". ";
                 $uploadOk = 1;
             } else {
-                $message += "File is not an image.\n";
+                $message .= "File is not an image. ";
                 $uploadOk = 0;
             }
         }
@@ -103,18 +103,18 @@
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            $message += "Sorry, only JPG, JPEG, PNG & GIF files are allowed.\n";
+            $message .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. ";
             $uploadOk = 0;
         }
 
         if (file_exists($target_file)) {
-            $message += "Sorry, file already exists.\n";
+            $message .= "Sorry, file already exists. ";
             $uploadOk = 0;
-          }
+        }
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            $message += "Sorry, your file was not uploaded.\n";
+            $message .= "Sorry, your file was not uploaded. ";
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["my_file"]["tmp_name"], $target_file)) {
@@ -123,13 +123,13 @@
                 <p>Loại file: ' . $imageFileType . '</p>
                 <p>Kích cỡ: ' . $_FILES["my_file"]["size"] / 1024 . ' Kb</p>
             </div>';
-            $message += "Your file is uploaded.\n";
+                $message .= "Your file is uploaded. ";
             } else {
-                $message += "Sorry, there was an error uploading your file.\n";
+                $message .= "Sorry, there was an error uploading your file. ";
             }
         }
 
-        echo '<script>alert("' . $message . '");</script>';
+        echo '<script>alert(\'' . $message . '\');</script>';
     }
     ?>
     <script>
@@ -138,6 +138,7 @@
             $('[name=filename]').val(fileName.replace(/C:\\fakepath\\/i, ''));
         });
     </script>
+    
 </body>
 
 </html>
