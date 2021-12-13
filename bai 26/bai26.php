@@ -80,6 +80,7 @@
     </form>
     <?php
     if (isset($_FILES["my_file"])) {
+        $message = "";
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["my_file"]["name"]);
         $uploadOk = 1;
@@ -89,10 +90,10 @@
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["my_file"]["tmp_name"]);
             if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
+                $message += "File is an image - " . $check["mime"] . ".\n";
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                $message += "File is not an image.\n";
                 $uploadOk = 0;
             }
         }
@@ -102,18 +103,18 @@
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $message += "Sorry, only JPG, JPEG, PNG & GIF files are allowed.\n";
             $uploadOk = 0;
         }
 
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
+            $message += "Sorry, file already exists.\n";
             $uploadOk = 0;
           }
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            $message += "Sorry, your file was not uploaded.\n";
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["my_file"]["tmp_name"], $target_file)) {
@@ -122,10 +123,13 @@
                 <p>Loại file: ' . $imageFileType . '</p>
                 <p>Kích cỡ: ' . $_FILES["my_file"]["size"] / 1024 . ' Kb</p>
             </div>';
+            $message += "Your file is uploaded.\n";
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                $message += "Sorry, there was an error uploading your file.\n";
             }
         }
+
+        echo '<script>alert("' . $message . '");</script>';
     }
     ?>
     <script>
