@@ -69,9 +69,10 @@
         <h3>THUỘC TÍNH CỦA TẬP TIN</h3>
         <div id="input">
             <label>Tập tin: </label>
-            <input type="text" name="filename" size="40" />
+            <input type="text" name="filename" size="40" value="<?php echo $_POST["filename"] ?? null ?>"/>
             <div id="input_file">
-                <input type="file" name="my_file" onchange="this.form.filename.value = this.value" style="color: transparent;" />
+                <input type="file" name="my_file" onchange="this.form.filename.value = this.value" 
+                style="color: transparent;" />
             </div>
         </div>
         <div id="buttonHolder">
