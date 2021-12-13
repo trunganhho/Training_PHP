@@ -27,7 +27,7 @@
         <select id="files" name="files">
             <option value="">Chọn file</option>
             <?php
-            $mydir = './bai 26/uploads';
+            $mydir = './doggo';
 
             $myfiles = array_diff(scandir($mydir), array('.', '..'));
 
