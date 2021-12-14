@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         .row {
-            width: 60%;
+            width: 50%;
             display: flex;
             flex-wrap: wrap;
             padding: 0 4px;
@@ -23,6 +23,7 @@
             margin-top: 8px;
             vertical-align: middle;
             width: 100%;
+            border: 2px solid black;
         }
 
         /* Responsive layout - makes a two column-layout instead of four columns */
