@@ -20,6 +20,7 @@
         th,
         td {
             border: 1px solid black;
+            color: #54597f;
         }
 
         td {
@@ -44,9 +45,9 @@
                 <th>Email</th>
             </tr>
             <?php
-            $username = "root";
-            $password = "";
-            $conn = new PDO('mysql:host=localhost:3307;dbname=ql_ban_sua', $username, $password);
+            require 'connection.php';
+
+            $conn = connectToDB();
             $query = "Select * from hang_sua";
             $stmt = $conn->prepare($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
