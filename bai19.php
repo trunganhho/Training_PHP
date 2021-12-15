@@ -64,11 +64,11 @@
                 </tr>
                 <tr>
                     <td>Cạnh b: </th>
-                    <td><input type="number" name="b" value="<?php echo $b ?>" step="any"/></th>
+                    <td><input type="number" name="b" value="<?php echo $b ?>" step="any"/></td>
                 </tr>
                 <tr>
                     <td>Cạnh huyền: </th>
-                    <td><input type="text" name="other" readonly value="<?php echo $other ?>" /></th>
+                    <td><input type="text" name="other" readonly value="<?php echo $other ?>" /></td>
                 </tr>
             </div>
         </table>

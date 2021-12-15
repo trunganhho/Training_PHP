@@ -98,7 +98,7 @@
 
     $start_from = ($page - 1) * $per_page_record;
 
-    $query = "SELECT sua.*, hang_sua.ten as hang_sua FROM sua inner join hang_sua on sua.hang_id = hang_sua.ma_hs
+    $query = "SELECT sua.*, hang_sua.ten as hang_sua, loai_sua.loai_sua as loai FROM sua inner join hang_sua on sua.hang_id = hang_sua.ma_hs inner join loai_sua on loai_sua.id = sua.loai_id
      LIMIT $start_from, $per_page_record";
     $stmt = $conn->prepare($query);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);

@@ -108,6 +108,7 @@
             $uploadOk = 0;
         }
 
+        // Check if File exist
         if (file_exists($target_file)) {
             $message .= "Sorry, file already exists. ";
             $uploadOk = 0;
